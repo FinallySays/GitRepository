@@ -43,31 +43,28 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isValid(String s) {
-        if (s == null) throw new NullPointerException("s Is Null");
+        if (s.length() % 2 != 0 || s == null) return false;
         char[] chars = s.toCharArray();
-        int size = chars.length;
-        if (size % 2 != 0) return false;
         Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < size; ++i) {
+        for (int i = 0; i < s.length(); ++i) {
             if (chars[i] != ')' && chars[i] != ']' && chars[i] != '}')
                 stack.push(chars[i]);
             else if (stack.isEmpty())
                 return false;
-            else if (chars[i] == ')') {
-                if (stack.pop() != '(')
-                    return false;
-            } else if (chars[i] == ']') {
-                if (stack.pop() != '[')
-                    return false;
-            } else {
-                if (stack.pop() != '{')
-                    return false;
-            }
+            else
+                switch (chars[i]) {
+                    case ')':
+                        if (stack.pop() != '(') return false;
+                        break;
+                    case ']':
+                        if (stack.pop() != '[') return false;
+                        break;
+                    case '}':
+                        if (stack.pop() != '{') return false;
+                        break;
+                }
         }
-        if (stack.isEmpty())
-            return true;
-        else
-            return false;
+        return stack.isEmpty();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
