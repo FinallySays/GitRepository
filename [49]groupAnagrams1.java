@@ -19,7 +19,7 @@
 // Related Topics 哈希表 字符串
 
 
-import java.util.ArrayList;
+import java.util.*;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
@@ -42,9 +42,7 @@ class Solution {
         int[] count = new int[26];
         for (char c : s.toCharArray())
             count[c - 'a']++;
-      String str = "";
-        for (int i = 0; i < 26; ++i)
-            str = str + count[i] + "#";
+      String str = Arrays.toString(count);
         return str;
     }
 }
