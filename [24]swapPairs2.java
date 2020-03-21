@@ -12,29 +12,23 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- * int val;
- * ListNode next;
- * ListNode(int x) { val = x; }
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
  * }
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-        ListNode result = new ListNode(0);
-        result.next = head;
-        ListNode temp = result;
-        while (temp.next != null && temp.next.next != null) {
-            ListNode start = temp.next;
-            ListNode end = temp.next.next;
-            start.next = end.next;
-            end.next = start;
-            temp.next = end;
-            temp = start;
-        }
-        return result.next;
+        if (head == null || head.next == null) return head;
+        ListNode next = head.next.next;
+        ListNode temp = head.next;
+        head.next = swapPairs(next);
+        temp.next = head;
+        head = temp;
+        return head;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
