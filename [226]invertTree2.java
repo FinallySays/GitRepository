@@ -44,8 +44,8 @@ class Solution {
          TreeNode temp = curr.left;
          curr.left = curr.right;
          curr.right = temp;
-         if (curr.left != null) invertTree(curr.left);
-         if (curr.right != null) invertTree(curr.right);
+         if (curr.left != null) queue.offer(curr.left);
+         if (curr.right != null) queue.offer(curr.right);
      }
      return root;
     }
