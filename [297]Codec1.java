@@ -40,6 +40,7 @@ public class Codec {
     private StringBuilder sb = new StringBuilder();
     private String[] strs;
     private int index = 0;
+    
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         dfs(root);
@@ -50,7 +51,7 @@ public class Codec {
     private void dfs(TreeNode root) {
         if (root == null) {
             sb.append("null#");
-            return ;
+            return;
         }
         
         sb.append(root.val).append("#");
@@ -63,20 +64,17 @@ public class Codec {
     
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        if (data == null) return null;
         strs = data.split("#");
         return helper();
     }
     
     private TreeNode helper() {
-        if (index == strs.length) return null;
         
-        TreeNode temp = new TreeNode(0);
         if (strs[index].equals("null")) {
-            index ++;
+            index++;
             return null;
-        } else
-            temp.val = Integer.valueOf(strs[index++]);
+        }
+        TreeNode temp = new TreeNode(Integer.valueOf(strs[index++]));
         
         temp.left = helper();
         temp.right = helper();
