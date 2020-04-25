@@ -27,11 +27,12 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int climbStairs(int n) {
-        if (n <= 2)
-            return n;
-        double sqrt_5 = Math.sqrt(5.0);
-        int fib_n = (int) ((1 / sqrt_5) * (Math.pow((1 + sqrt_5) / 2, n + 1) - Math.pow((1 - sqrt_5) / 2, n + 1)));
-        return fib_n;
+        if (n <= 0) return 0;
+        int curr = 1;
+        int prev = 1;
+        for (int i = 2; i <= n; ++i)
+            curr = prev + (prev = curr);
+        return curr;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
